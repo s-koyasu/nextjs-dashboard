@@ -3,6 +3,7 @@ import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import ReactPDF from '@react-pdf/renderer';
 import fs from 'fs';
 import path from 'path';
+export const dynamic = 'force-dynamic';
 
 // Create styles
 const styles = StyleSheet.create({
