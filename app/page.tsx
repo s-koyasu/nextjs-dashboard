@@ -1,6 +1,8 @@
 import React from 'react';
 import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import ReactPDF from '@react-pdf/renderer';
+import fs from 'fs';
+import path from 'path';
 
 // Create styles
 const styles = StyleSheet.create({
@@ -29,6 +31,21 @@ const MyDocument = () => (
 );
 
 export default function Home() {
+  const currentDir = process.cwd();
+  const files = fs.readdirSync(currentDir);
+
+  // PDFファイルの保存先を指定
   ReactPDF.render(<MyDocument />, `public/example.pdf`);
-  return <MyDocument />;
+
+  return (
+    <div>
+      <h1>PDF Generator</h1>
+      <ul>
+        {files.map((file, index) => (
+          <li key={index}>{file}</li>
+        ))}
+      </ul>
+      <MyDocument />
+    </div>
+  );
 }
